@@ -32,11 +32,17 @@ export default function SearchForm({ types }: SearchFormProps) {
 
     const handleChangePokemon = (e: React.ChangeEvent<HTMLSelectElement>) => {
         e.preventDefault()
-        setType(e.target.value)
-        startTransition(() => {
-            const params = new URLSearchParams()
-            if (type) params.set("type", type)
 
+        const newType = e.target.value
+        setType(newType)
+
+        startTransition(() => {
+            const params = new URLSearchParams(searchParams.toString()) // Preserve existing params
+            if (newType) {
+                params.set("type", newType)
+            } else {
+                params.delete("type")
+            }
             router.push(`/?${params.toString()}`)
         })
     }
