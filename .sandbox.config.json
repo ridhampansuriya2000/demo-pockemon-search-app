@@ -1,0 +1,6 @@
+{
+  "ports": {
+    "autoOpen": false,
+    "default": 3000
+  }
+}
